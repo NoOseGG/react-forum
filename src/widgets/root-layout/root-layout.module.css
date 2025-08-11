@@ -1,0 +1,16 @@
+.rootLayout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.section {
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 1;
+}
+
+.content {
+  flex-grow: 1;
+}
