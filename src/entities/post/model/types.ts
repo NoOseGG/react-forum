@@ -1,5 +1,3 @@
-
-
 export type Post = {
   id: string;
   title: string;
@@ -7,4 +5,6 @@ export type Post = {
   userId: string;
   likes: number;
   dislikes: number;
+  likedId: string[];
+  dislikedId: string[];
 };

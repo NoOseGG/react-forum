@@ -1,0 +1,100 @@
+.loginOverlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 600px; /* ширина квадрата */
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 1000;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  transform: translate(-50%, -50%); /* смещение для центрирования */
+  border-radius: 16px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  cursor: pointer;
+  z-index: 10;
+
+  &:hover {
+    animation: shake 0.3s;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(3px);
+  }
+  50% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.title {
+  margin-top: 40px;
+  font-size: 60px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  width: 100%;
+}
+
+.input {
+  margin-top: 10px;
+  width: 100%;
+  padding: 12px;
+  background-color: #fff;
+  border-radius: 16px;
+}
+
+.loginTitle {
+  margin-top: 40px;
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.submit {
+  padding: 12px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  max-width: 800px;
+  width: 100%;
+  border: none;
+  background-color: #ff4401;
+  border-radius: 16px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  transition: transform 0.3s ease;
+}
+
+.submit:not(:disabled):hover {
+  transform: scale(1.03);
+}
+
+.disabled {
+  cursor: not-allowed;
+  background-color: gray;
+}

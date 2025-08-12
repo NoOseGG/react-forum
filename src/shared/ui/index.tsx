@@ -1,2 +1,2 @@
 export { Logo } from "./logo/logo";
-export { LoginButton } from "./login-button/login-button";
+export { Menu } from "./menu/menu";
