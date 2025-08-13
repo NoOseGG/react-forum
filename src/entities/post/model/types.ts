@@ -7,4 +7,7 @@ export type Post = {
   dislikes: number;
   likedId: string[];
   dislikedId: string[];
+  priority: number;
 };
+
+export type PostRequest = Omit<Post, "id">;

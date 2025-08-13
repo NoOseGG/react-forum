@@ -1,6 +1,7 @@
-import { LoginButton } from "../../features/login/ui/login-button/login-button";
-import { Logo } from "../../shared/ui";
-import { Menu } from "../../shared/ui/menu/menu";
+
+
+import { LoginButton } from "../../../features/login";
+import { Logo, Menu } from "../../../shared/ui";
 import styles from "./header.module.css";
 
 export const Header = () => {

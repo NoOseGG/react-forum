@@ -50,7 +50,7 @@ export const LoginOverlay: React.FC<Props> = ({ onClose }) => {
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <input
-          {...register("email", { required: "Введите email" })}
+          {...register("email", { required: "Enter email" })}
           className={styles.input}
           type='email'
           placeholder='enter email'
@@ -58,7 +58,7 @@ export const LoginOverlay: React.FC<Props> = ({ onClose }) => {
         {/* {errors.email && <p>{errors.email.message}</p>} */}
 
         <input
-          {...register("password", { required: "Введите пароль" })}
+          {...register("password", { required: "Enter password" })}
           className={styles.input}
           type='password'
           placeholder='enter password'

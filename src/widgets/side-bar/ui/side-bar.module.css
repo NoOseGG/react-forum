@@ -1,0 +1,32 @@
+.sideBar {
+  position: sticky;
+  top: 0;
+  padding: 20px;
+  max-width: 300px;
+  width: 100%;
+  background-color: #262d34;
+  border-radius: 16px;
+  height: 100%;
+}
+
+.item {
+  display: block; /* чтобы ширина работала */
+  width: 100%;
+  padding: 8px 12px;
+  color: #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease;
+
+  &:hover {
+    color: #ff571a;
+    background-color: #2c353d;
+  }
+}
+
+.activeItem {
+  color: #fff;
+  background-color: #ff571a;
+}

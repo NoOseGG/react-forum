@@ -1,5 +1,7 @@
 .post {
+  position: relative;
   min-width: 300px;
+
   padding: 8px;
   background-color: #2c353d;
   border-radius: 16px;
@@ -8,18 +10,17 @@
   flex-direction: column;
   justify-content: space-between;
   transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+    /* transform 0.3s ease, */ box-shadow 0.3s ease;
 
   &:hover {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-    transform: scale(1.005);
+    /* transform: scale(1.005); */
   }
 }
 
 .title {
-  font-size: 24px;
-  margin-right: 10px;
+  font-size: 20px;
+  margin-right: 50px;
 }
 
 .body {
@@ -37,8 +38,9 @@
 .info {
   margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 20px;
 }
 
 .infoItem {
