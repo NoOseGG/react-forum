@@ -7,7 +7,10 @@ export const PostPage = () => {
 
   return (
     <div className={styles.postPage}>
-      {data && data?.map(post => <PostCard post={post} />)}
+      <h2 className={styles.title}>Posts</h2>
+      <div className={styles.posts}>
+        {data && data?.map(post => <PostCard post={post} />)}
+      </div>
     </div>
   );
 };

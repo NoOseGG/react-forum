@@ -1,7 +1,21 @@
 .postPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.posts {
   display: grid; /* или flex */
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 20px;
   padding: 20px; /* одинаково со всех сторон */
   box-sizing: border-box;
+}
+
+.title {
+  color: #ffff;
+  font-size: 50px;
+  font-weight: 800;
 }

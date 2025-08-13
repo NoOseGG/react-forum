@@ -1,3 +1,4 @@
+import { useNavigate } from "@tanstack/react-router";
 import { LogOut, Warehouse } from "lucide-react";
 
 import { useEffect, useState } from "react";
@@ -12,6 +13,7 @@ import styles from "./login-button.module.css";
 
 export const LoginButton = () => {
   const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
+  const navigate = useNavigate();
   const setUser = useSetUser();
   const user = useUser();
 
@@ -49,11 +51,17 @@ export const LoginButton = () => {
     setUser(null);
   };
 
+  const onClicUser = () => {
+    navigate({ to: "/user-account" });
+  };
+
   return (
     <div>
       {user ? (
         <div className={styles.name}>
-          <span>{user.name}</span>{" "}
+          <span className={styles.userAccount} onClick={onClicUser}>
+            {user.name}
+          </span>{" "}
           <LogOut size={32} className={styles.logout} onClick={onLogout} />
         </div>
       ) : (

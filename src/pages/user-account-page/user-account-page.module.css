@@ -1,0 +1,13 @@
+.userAccount {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.title {
+  color: #ffff;
+  font-size: 50px;
+  font-weight: 800;
+}
