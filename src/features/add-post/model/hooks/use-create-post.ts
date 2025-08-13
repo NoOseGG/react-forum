@@ -18,6 +18,8 @@ export const useCreatePost = () => {
       queryClient.invalidateQueries({
         queryKey: ["posts"],
       });
+      console.log("validate");
+
       navigate({ to: "/posts" });
     },
   });
