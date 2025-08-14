@@ -9,7 +9,7 @@ export const PostPage = () => {
     <div className={styles.postPage}>
       <h2 className={styles.title}>Posts</h2>
       <div className={styles.posts}>
-        {data && data?.map(post => <PostCard post={post} />)}
+        {data && data?.map(post => <PostCard post={post} key={post.id} />)}
       </div>
     </div>
   );
