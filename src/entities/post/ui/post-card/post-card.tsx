@@ -3,6 +3,7 @@ import { ThumbsDown, ThumbsUp } from "lucide-react";
 import React from "react";
 
 import { useUser } from "../../../user/model/store/user-store";
+import { useDislike } from "../../hooks/use-add-dislike";
 import { useLike } from "../../hooks/use-add-like";
 import type { Post } from "../../model/types";
 import { DeletePostBtn } from "../delete-post-btn";
@@ -14,15 +15,28 @@ interface Props {
 
 export const PostCard: React.FC<Props> = ({ post }) => {
   const user = useUser();
-  const { mutate } = useLike();
+  const { mutate: like } = useLike();
+  const { mutate: dislike } = useDislike();
   const isLike = user?.id ? post.likedId.includes(user?.id) : null;
   const isDislike = user?.id ? post.dislikedId.includes(user?.id) : null;
 
   const onLike = () => {
     if (!user?.id) return;
-    mutate({
+    like({
       post: post,
       userId: user?.id,
+      isLiked: isLike,
+      isDisliked: isDislike,
+    });
+  };
+
+  const onDislike = () => {
+    if (!user?.id) return;
+    dislike({
+      post: post,
+      userId: user?.id,
+      isLiked: isLike,
+      isDisliked: isDislike,
     });
   };
 
@@ -46,7 +60,8 @@ export const PostCard: React.FC<Props> = ({ post }) => {
           style={{ color: isDislike ? "red" : "#fff" }}
           className={styles.infoItem}
         >
-          <ThumbsDown className={styles.icon} />: {post.dislikes}
+          <ThumbsDown onClick={onDislike} className={styles.icon} />:{" "}
+          {post.dislikes}
         </div>
       </div>
     </div>
