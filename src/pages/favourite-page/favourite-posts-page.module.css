@@ -1,9 +1,15 @@
-.postPage {
+.favouritePage {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 20px;
+  padding-top: 20px;
+}
+
+.title {
+  color: #ffff;
+  font-size: 50px;
+  font-weight: 800;
 }
 
 .posts {
@@ -13,16 +19,4 @@
   gap: 20px;
 
   box-sizing: border-box;
-}
-
-.title {
-  color: #ffff;
-  font-size: 50px;
-  font-weight: 800;
-}
-
-.spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

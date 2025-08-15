@@ -1,7 +1,4 @@
 .deleteBtn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
   cursor: pointer;
   transition: transform 0.3s ease;
 

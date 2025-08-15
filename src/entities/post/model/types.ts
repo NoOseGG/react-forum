@@ -8,6 +8,9 @@ export type Post = {
   likedId: string[];
   dislikedId: string[];
   priority: number;
+  userName: string;
+  createdAt: string;
+  favouriteIds: string[];
 };
 
-export type PostRequest = Omit<Post, "id">;
+export type PostRequest = Omit<Post, "id" | "createdAt">;

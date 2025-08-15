@@ -33,6 +33,8 @@ export const CreatePost = () => {
         likedId: [],
         dislikedId: [],
         priority: 1,
+        userName: user.name,
+        favouriteIds: [],
       };
 
       mutate(post);

@@ -1,0 +1,39 @@
+.wrapper {
+    position: relative;
+    align-self: flex-end;
+}
+
+.filterPost {
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.overlay {
+    width: 100%;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background-color: #1f252b;
+    border-radius: 16px;
+    padding: 8px;
+    z-index: 100;
+}
+
+.filterItem {
+    font-size: 24px;
+    color: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 16px;
+    padding: 2px 6px;
+
+    &:hover {
+        background-color: #272d34;
+    }
+}

@@ -1,21 +1,39 @@
+import { useNavigate } from "@tanstack/react-router";
+
+import { useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 
 import { useGetPosts } from "../../entities/post/hooks/use-get-posts";
+import {
+  useFilterPost,
+  useUser,
+} from "../../entities/user/model/store/user-store";
 import { getFiltredPost } from "../../features/filter-post/lib/utils";
 import { FilterPost } from "../../features/filter-post/ui";
 import { PostCard } from "../../widgets/post-card/post-card";
-import { useFilterPost } from "./../../entities/user/model/store/user-store";
-import styles from "./post-page.module.css";
+import styles from "./favourite-posts-page.module.css";
 
-export const PostPage = () => {
+export const FavouritePostsPage = () => {
+  const user = useUser();
   const { data, isFetching } = useGetPosts();
   const filter = useFilterPost();
+  const navigate = useNavigate();
 
-  const filtredData = getFiltredPost(data, filter);
+  useEffect(() => {
+    if (!user) {
+      navigate({ to: "/" });
+    }
+  }, [user]);
+
+  const favouritePosts = user?.id
+    ? data?.filter(post => post.favouriteIds.includes(user.id))
+    : [];
+
+  const filtredData = getFiltredPost(favouritePosts, filter);
 
   return (
-    <div className={styles.postPage}>
-      <h2 className={styles.title}>Posts</h2>
+    <div className={styles.favouritePage}>
+      <h2 className={styles.title}>Favourite Posts</h2>
       <FilterPost />
       <div className={styles.posts}>
         {filtredData &&

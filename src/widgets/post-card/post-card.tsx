@@ -2,11 +2,13 @@ import { ThumbsDown, ThumbsUp } from "lucide-react";
 
 import React from "react";
 
-import { useUser } from "../../../user/model/store/user-store";
-import { useDislike } from "../../hooks/use-add-dislike";
-import { useLike } from "../../hooks/use-add-like";
-import type { Post } from "../../model/types";
-import { DeletePostBtn } from "../delete-post-btn";
+import { useDislike } from "../../entities/post/hooks/use-add-dislike";
+import { useLike } from "../../entities/post/hooks/use-add-like";
+import type { Post } from "../../entities/post/model/types";
+import { DeletePostBtn } from "../../entities/post/ui/delete-post-btn";
+import { useUser } from "../../entities/user/model/store/user-store";
+import { useFavourite } from "../../features/add-favourite/model/hooks/useFavourite";
+import { AddFavourite } from "../../features/add-favourite/ui";
 import styles from "./post-card.module.css";
 
 interface Props {
@@ -19,6 +21,7 @@ export const PostCard: React.FC<Props> = ({ post }) => {
   const { mutate: dislike } = useDislike();
   const isLike = user?.id ? post.likedId.includes(user?.id) : null;
   const isDislike = user?.id ? post.dislikedId.includes(user?.id) : null;
+  const isFavourite = user?.id ? post.favouriteIds.includes(user.id) : false;
 
   const onLike = () => {
     if (!user?.id) return;
@@ -42,11 +45,14 @@ export const PostCard: React.FC<Props> = ({ post }) => {
 
   return (
     <div className={styles.post}>
-      {user?.role === "admin" ? (
-        <DeletePostBtn postId={post.id} />
-      ) : (
-        user?.id === post.userId && <DeletePostBtn postId={post.id} />
-      )}
+      <div className={styles.buttonsContainer}>
+        <AddFavourite post={post} userId={user?.id} isFavourite={isFavourite} />
+        {user?.role === "admin" ? (
+          <DeletePostBtn postId={post.id} />
+        ) : (
+          user?.id === post.userId && <DeletePostBtn postId={post.id} />
+        )}
+      </div>
       <div className={styles.title}>{post.title}</div>
       <span className={styles.body}>{post.body}</span>
       <div className={styles.info}>
@@ -62,6 +68,12 @@ export const PostCard: React.FC<Props> = ({ post }) => {
         >
           <ThumbsDown onClick={onDislike} className={styles.icon} />:{" "}
           {post.dislikes}
+        </div>
+        <div className={styles.userInfo}>
+          <div className={styles.userName}>{post.userName}</div>
+          <div className={styles.date}>
+            {new Date(post.createdAt).toLocaleString()}
+          </div>
         </div>
       </div>
     </div>

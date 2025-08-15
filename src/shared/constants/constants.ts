@@ -5,6 +5,7 @@ export const URLS = {
   users: "/users",
   createPost: "/create-post",
   userAccount: "/user-account",
+  favouritePosts: "/favourite",
 };
 
 export const COLORS = {

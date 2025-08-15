@@ -7,3 +7,5 @@ export type User = {
   role: "admin" | "user";
   address: string;
 };
+
+export type FilterPost = "priority" | "user" | "like" | "dislike" | "date";

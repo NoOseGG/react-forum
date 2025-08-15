@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as UsersRouteImport } from './routes/users'
 import { Route as UserAccountRouteImport } from './routes/user-account'
 import { Route as PostsRouteImport } from './routes/posts'
+import { Route as FavouriteRouteImport } from './routes/favourite'
 import { Route as CreatePostRouteImport } from './routes/create-post'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +31,11 @@ const PostsRoute = PostsRouteImport.update({
   path: '/posts',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FavouriteRoute = FavouriteRouteImport.update({
+  id: '/favourite',
+  path: '/favourite',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreatePostRoute = CreatePostRouteImport.update({
   id: '/create-post',
   path: '/create-post',
@@ -44,6 +50,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/create-post': typeof CreatePostRoute
+  '/favourite': typeof FavouriteRoute
   '/posts': typeof PostsRoute
   '/user-account': typeof UserAccountRoute
   '/users': typeof UsersRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/create-post': typeof CreatePostRoute
+  '/favourite': typeof FavouriteRoute
   '/posts': typeof PostsRoute
   '/user-account': typeof UserAccountRoute
   '/users': typeof UsersRoute
@@ -59,21 +67,42 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/create-post': typeof CreatePostRoute
+  '/favourite': typeof FavouriteRoute
   '/posts': typeof PostsRoute
   '/user-account': typeof UserAccountRoute
   '/users': typeof UsersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/create-post' | '/posts' | '/user-account' | '/users'
+  fullPaths:
+    | '/'
+    | '/create-post'
+    | '/favourite'
+    | '/posts'
+    | '/user-account'
+    | '/users'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/create-post' | '/posts' | '/user-account' | '/users'
-  id: '__root__' | '/' | '/create-post' | '/posts' | '/user-account' | '/users'
+  to:
+    | '/'
+    | '/create-post'
+    | '/favourite'
+    | '/posts'
+    | '/user-account'
+    | '/users'
+  id:
+    | '__root__'
+    | '/'
+    | '/create-post'
+    | '/favourite'
+    | '/posts'
+    | '/user-account'
+    | '/users'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CreatePostRoute: typeof CreatePostRoute
+  FavouriteRoute: typeof FavouriteRoute
   PostsRoute: typeof PostsRoute
   UserAccountRoute: typeof UserAccountRoute
   UsersRoute: typeof UsersRoute
@@ -102,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/favourite': {
+      id: '/favourite'
+      path: '/favourite'
+      fullPath: '/favourite'
+      preLoaderRoute: typeof FavouriteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/create-post': {
       id: '/create-post'
       path: '/create-post'
@@ -122,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreatePostRoute: CreatePostRoute,
+  FavouriteRoute: FavouriteRoute,
   PostsRoute: PostsRoute,
   UserAccountRoute: UserAccountRoute,
   UsersRoute: UsersRoute,

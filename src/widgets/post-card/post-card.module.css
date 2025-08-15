@@ -18,9 +18,19 @@
   }
 }
 
+.buttonsContainer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  top: 10px;
+  right: 10px;
+}
+
 .title {
   font-size: 20px;
-  margin-right: 50px;
+  margin-right: 80px;
 }
 
 .body {
@@ -57,4 +67,19 @@
   &:hover {
     transform: scale(1.03);
   }
+}
+
+.userInfo {
+  margin-right: 6px;
+  margin-left: auto;
+  font-size: 16px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+}
+
+.date {
 }
