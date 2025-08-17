@@ -1,9 +1,6 @@
-import { useNavigate } from "@tanstack/react-router";
-
-import React from "react";
 import { useForm } from "react-hook-form";
 
-import type { Post, PostRequest } from "../../../entities/post/model/types";
+import type { PostRequest } from "../../../entities/post/model/types";
 import { useUser } from "../../../entities/user/model/store/user-store";
 import { useCreatePost } from "../model/hooks/use-create-post";
 import type { FormDataCreatePost } from "../model/types/types";

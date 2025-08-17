@@ -30,8 +30,6 @@ export const useLike = () => {
         `/posts/${data.post.id}`,
         updatedPost,
       );
-      console.log(data.userId);
-      console.log(updatedPost);
 
       return response.data;
     },
