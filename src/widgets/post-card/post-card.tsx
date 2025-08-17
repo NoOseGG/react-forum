@@ -5,10 +5,10 @@ import React from "react";
 import { useDislike } from "../../entities/post/hooks/use-add-dislike";
 import { useLike } from "../../entities/post/hooks/use-add-like";
 import type { Post } from "../../entities/post/model/types";
-import { DeletePostBtn } from "../../entities/post/ui/delete-post-btn";
 import { useUser } from "../../entities/user/model/store/user-store";
 import { useFavourite } from "../../features/add-favourite/model/hooks/useFavourite";
 import { AddFavourite } from "../../features/add-favourite/ui";
+import { DeletePostBtn } from "../../features/delete-post-btn";
 import styles from "./post-card.module.css";
 
 interface Props {
