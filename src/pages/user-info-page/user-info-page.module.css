@@ -1,13 +1,42 @@
 .userInfo {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  color: #ffff;
 }
 
 .title {
-    color: #ffff;
-    font-size: 50px;
-    font-weight: 800;
+  font-size: 50px;
+  font-weight: 800;
+}
+
+.subtitle {
+  margin-top: 20px;
+  font-size: 30px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.posts {
+  margin-top: 20px;
+  display: grid; /* или flex */
+  grid-template-columns: repeat(3, minmax(400px, 1fr));
+  gap: 20px;
+
+  box-sizing: border-box;
+}
+
+.editProfile {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
