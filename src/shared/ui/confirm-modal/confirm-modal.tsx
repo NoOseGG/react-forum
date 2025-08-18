@@ -20,7 +20,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
   if (!isOpen) return null;
 
   const handleOverlayClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // не даёт клику "пройти" на задний экран
+    e.stopPropagation();
   };
 
   return (
@@ -41,7 +41,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
           <button
             onClick={e => {
               e.stopPropagation();
-              onConfirm(e);
+              onConfirm();
             }}
             className={styles.confirm}
           >

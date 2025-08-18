@@ -26,10 +26,41 @@ export const useFavourite = () => {
 
       return response.data;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["posts"],
-      });
+
+    onMutate: async data => {
+      await queryClient.cancelQueries({ queryKey: ["posts"] });
+
+      const previousPosts = queryClient.getQueryData<Post[]>(["posts"]);
+
+      if (previousPosts) {
+        queryClient.setQueryData<Post[]>(["posts"], oldPosts =>
+          oldPosts
+            ? oldPosts.map(post =>
+                post.id === data.post.id
+                  ? {
+                      ...post,
+                      favouriteIds: data.isFavourite
+                        ? post.favouriteIds.filter(id => id !== data.userId)
+                        : [...post.favouriteIds, data.userId],
+                    }
+                  : post,
+              )
+            : [],
+        );
+      }
+
+      return { previousPosts };
+    },
+
+    onError: (_err, _data, context) => {
+      if (context?.previousPosts) {
+        queryClient.setQueryData(["posts"], context.previousPosts);
+      }
+    },
+
+    onSettled: (_data, _error, variables) => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      queryClient.invalidateQueries({ queryKey: ["post", variables.post.id] });
     },
   });
 };

@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 20px;
+  padding: 20px;
 }
 
 .title {
@@ -15,7 +15,7 @@
 .posts {
   margin-top: 20px;
   display: grid; /* или flex */
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(3, minmax(400px, 1fr));
   gap: 20px;
 
   box-sizing: border-box;

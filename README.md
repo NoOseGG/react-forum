@@ -1,69 +1,60 @@
-# React + TypeScript + Vite
+Проект представляет собой небольшое приложение для работы с постами и комментариями.  
+Реализован функционал отображения постов, возможность лайка/дизлайка, добавление и удаление комментариев, а также модальные окна подтверждения действий.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## ⚠️ Ограничения и недоработки
 
-Currently, two official plugins are available:
+На данный момент проект является учебным и не содержит полноценной реализации всего необходимого функционала.  
+В частности:  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- отсутствует детальная обработка ошибок при запросах к серверу;  
+- не реализована защита от непредвиденных ситуаций;  
+- некоторые сценарии использования остаются необработанными.  
 
-## Expanding the ESLint configuration
+💡 Проект находится в стадии разработки, поэтому основной акцент сделан на демонстрации базового функционала работы с постами и комментариями.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Стек технологий
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **React 18**
+- **TypeScript**
+- **React Query (TanStack Query)** — работа с данными и кэшем
+- **Axios** — HTTP-клиент
+- **CSS Modules** — стилизация компонентов
+- **Vite / Create React App** (зависит от твоего билда)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### 🔑 Роли пользователей
+- **Админ**:
+  - может удалять посты и комментарии **всех пользователей**  
+- **Обычный пользователь**:
+  - может удалять **только свои посты и свои комментарии**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 👥 Тестовые аккаунты
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🛡️ Админ
+- **Логин:** `hoc751@gmail.com`  
+- **Пароль:** `privet1992poka`  
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 👤 Пользователь
+- **Логин:** `maxplotnikov@gmail.com`  
+- **Пароль:** `privet1992poka`  
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## ⚙️ Функционал
+
+- 📌 Получение поста по ID
+- 👍 Лайк / 👎 Дизлайк поста
+- 💬 Добавление и удаление комментариев
+- 🔄 Автоматическое обновление кэша в React Query после мутаций
+- 🪟 Модальное окно подтверждения действий
+- 🎨 Адаптивные стили через CSS Modules
+
+🔧 Установка и запуск
+
+Клонировать репозиторий:
+git clone https://github.com/NoOseGG/react-forum.git
+
+Установить зависимости:
+npm install
+
+Запустить dev-сервер:\
+npm run dev
+
+

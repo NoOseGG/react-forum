@@ -1,6 +1,8 @@
 import { ThumbsUp } from "lucide-react";
 
 import React from "react";
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 
 import { useLike } from "../../entities/post/hooks/use-add-like";
 import type { Post } from "../../entities/post/model/types";
@@ -30,11 +32,20 @@ export const AddLike: React.FC<Props> = ({ post }) => {
     });
   };
   return (
-    <div
-      style={{ color: isLike ? "green" : "#fff" }}
-      className={styles.infoItem}
-    >
-      <ThumbsUp onClick={onLike} className={styles.icon} />: {post.likes}
-    </div>
+    <>
+      <div
+        style={{ color: isLike ? "green" : "#fff" }}
+        className={styles.infoItem}
+      >
+        <ThumbsUp
+          onClick={onLike}
+          className={styles.icon}
+          data-tooltip-id='addLike'
+          data-tooltip-content='like post'
+        />
+        : {post.likes}
+      </div>
+      <ReactTooltip id='addLike' place='bottom' />
+    </>
   );
 };

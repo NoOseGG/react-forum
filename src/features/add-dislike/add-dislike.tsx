@@ -1,6 +1,8 @@
 import { ThumbsDown } from "lucide-react";
 
 import React from "react";
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 
 import { useDislike } from "../../entities/post/hooks/use-add-dislike";
 import type { Post } from "../../entities/post/model/types";
@@ -29,12 +31,20 @@ export const AddDislike: React.FC<Props> = ({ post }) => {
     });
   };
   return (
-    <div
-      style={{ color: isDislike ? "red" : "#fff" }}
-      className={styles.infoItem}
-    >
-      <ThumbsDown onClick={onDislike} className={styles.icon} />:{" "}
-      {post.dislikes}
-    </div>
+    <>
+      <div
+        style={{ color: isDislike ? "red" : "#fff" }}
+        className={styles.infoItem}
+      >
+        <ThumbsDown
+          onClick={onDislike}
+          className={styles.icon}
+          data-tooltip-id='addDislike'
+          data-tooltip-content='dislike post'
+        />
+        : {post.dislikes}
+      </div>
+      <ReactTooltip id='addDislike' place='bottom' />
+    </>
   );
 };
