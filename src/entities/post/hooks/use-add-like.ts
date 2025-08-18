@@ -38,7 +38,9 @@ export const useLike = () => {
       await queryClient.cancelQueries({ queryKey: ["posts"] });
 
       const previousPost = queryClient.getQueryData<Post>(["post", post.id]);
+      const previousPosts = queryClient.getQueryData<Post[]>(["posts"]);
 
+      // обновляем одиночный пост
       queryClient.setQueryData<Post>(["post", post.id], {
         ...post,
         likes: isLiked ? post.likes - 1 : post.likes + 1,
@@ -51,7 +53,29 @@ export const useLike = () => {
           : post.dislikedId,
       });
 
-      return { previousPost };
+      // обновляем список постов
+      if (previousPosts) {
+        queryClient.setQueryData<Post[]>(
+          ["posts"],
+          previousPosts.map(p =>
+            p.id === post.id
+              ? {
+                  ...p,
+                  likes: isLiked ? p.likes - 1 : p.likes + 1,
+                  likedId: isLiked
+                    ? p.likedId.filter(id => id !== userId)
+                    : [...p.likedId, userId],
+                  dislikes: isDisliked ? p.dislikes - 1 : p.dislikes,
+                  dislikedId: isDisliked
+                    ? p.dislikedId.filter(id => id !== userId)
+                    : p.dislikedId,
+                }
+              : p,
+          ),
+        );
+      }
+
+      return { previousPost, previousPosts };
     },
 
     onError: (_err, variables, context) => {
@@ -61,10 +85,17 @@ export const useLike = () => {
           context.previousPost,
         );
       }
+      if (context?.previousPosts) {
+        queryClient.setQueryData(["posts"], context.previousPosts);
+      }
     },
 
     onSuccess: data => {
       queryClient.setQueryData(["post", data.id], data);
+
+      queryClient.setQueryData<Post[]>(["posts"], old =>
+        old ? old.map(p => (p.id === data.id ? data : p)) : [],
+      );
     },
 
     onSettled: (_data, _err, variables) => {
