@@ -25,10 +25,22 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
         <h3>{title}</h3>
         <p>{message}</p>
         <div className={styles.actions}>
-          <button onClick={onCancel} className={styles.cancel}>
+          <button
+            onClick={e => {
+              e.stopPropagation();
+              onCancel();
+            }}
+            className={styles.cancel}
+          >
             Cancel
           </button>
-          <button onClick={onConfirm} className={styles.confirm}>
+          <button
+            onClick={e => {
+              e.stopPropagation();
+              onConfirm(e);
+            }}
+            className={styles.confirm}
+          >
             Confirm
           </button>
         </div>

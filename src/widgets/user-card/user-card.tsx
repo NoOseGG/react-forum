@@ -12,7 +12,7 @@ interface Props {
 export const UserCard: React.FC<Props> = ({ user }) => {
   const navigate = useNavigate();
   const onClick = (id: string) => {
-    navigate({ to: "/film", search: { id: id } });
+    navigate({ to: "/user-info", search: { id: id } });
   };
 
   return (

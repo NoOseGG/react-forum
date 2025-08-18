@@ -21,7 +21,8 @@ export const AddFavourite: React.FC<Props> = ({
 }) => {
   const { mutate } = useFavourite();
 
-  const onFavourite = () => {
+  const onFavourite = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     if (!userId) return;
     mutate({
       post: post,

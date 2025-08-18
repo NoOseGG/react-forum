@@ -16,14 +16,6 @@ export const UserInfoPage = () => {
 
   const userPosts = posts?.filter(post => post.userId === id);
 
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   if (!user) {
-  //     navigate({ to: "/" });
-  //   }
-  // }, [user]);
-
   return (
     <div className={styles.userInfo}>
       {user?.role === "admin" && (

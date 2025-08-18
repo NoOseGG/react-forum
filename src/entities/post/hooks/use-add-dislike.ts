@@ -37,7 +37,42 @@ export const useDislike = () => {
 
       return response.data;
     },
-    onSuccess: () => {
+    onMutate: async ({ post, userId, isLiked, isDisliked }) => {
+      await queryClient.cancelQueries({ queryKey: ["post", post.id] });
+      await queryClient.cancelQueries({ queryKey: ["posts"] });
+
+      const previousPost = queryClient.getQueryData<Post>(["post", post.id]);
+
+      queryClient.setQueryData<Post>(["post", post.id], {
+        ...post,
+        likes: isLiked ? post.likes - 1 : post.likes,
+        likedId: isLiked
+          ? post.likedId.filter(id => id !== userId)
+          : post.likedId,
+        dislikes: isDisliked ? post.dislikes - 1 : post.dislikes + 1,
+        dislikedId: isDisliked
+          ? post.dislikedId.filter(id => id !== userId)
+          : [...post.dislikedId, userId],
+      });
+
+      return { previousPost };
+    },
+
+    onError: (_err, variables, context) => {
+      if (context?.previousPost) {
+        queryClient.setQueryData(
+          ["post", variables.post.id],
+          context.previousPost,
+        );
+      }
+    },
+
+    onSuccess: data => {
+      queryClient.setQueryData(["post", data.id], data);
+    },
+
+    onSettled: (_data, _err, variables) => {
+      queryClient.invalidateQueries({ queryKey: ["post", variables.post.id] });
       queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
   });

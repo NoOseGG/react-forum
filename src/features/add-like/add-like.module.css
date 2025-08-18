@@ -1,0 +1,15 @@
+.infoItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.icon {
+    cursor: pointer;
+    transition: transfrom 0.3s ease;
+
+    &:hover {
+        transform: scale(1.03);
+    }
+}

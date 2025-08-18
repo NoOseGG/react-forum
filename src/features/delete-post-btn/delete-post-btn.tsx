@@ -25,7 +25,10 @@ export const DeletePostBtn: React.FC<Props> = ({ postId }) => {
     <>
       <Trash2
         size={32}
-        onClick={() => setIsModalOpen(true)}
+        onClick={e => {
+          e.stopPropagation();
+          setIsModalOpen(true);
+        }}
         className={styles.deleteBtn}
         data-tooltip-id='delete'
         data-tooltip-content='Delete post'

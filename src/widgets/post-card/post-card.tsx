@@ -1,13 +1,12 @@
-import { ThumbsDown, ThumbsUp } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
 
 import React from "react";
 
-import { useDislike } from "../../entities/post/hooks/use-add-dislike";
-import { useLike } from "../../entities/post/hooks/use-add-like";
 import type { Post } from "../../entities/post/model/types";
 import { useUser } from "../../entities/user/model/store/user-store";
-import { useFavourite } from "../../features/add-favourite/model/hooks/useFavourite";
+import { AddDislike } from "../../features/add-dislike";
 import { AddFavourite } from "../../features/add-favourite/ui";
+import { AddLike } from "../../features/add-like/add-like";
 import { DeletePostBtn } from "../../features/delete-post-btn";
 import styles from "./post-card.module.css";
 
@@ -17,34 +16,17 @@ interface Props {
 
 export const PostCard: React.FC<Props> = ({ post }) => {
   const user = useUser();
-  const { mutate: like } = useLike();
-  const { mutate: dislike } = useDislike();
-  const isLike = user?.id ? post.likedId.includes(user?.id) : null;
-  const isDislike = user?.id ? post.dislikedId.includes(user?.id) : null;
+  const navigate = useNavigate();
   const isFavourite = user?.id ? post.favouriteIds.includes(user.id) : false;
 
-  const onLike = () => {
-    if (!user?.id) return;
-    like({
-      post: post,
-      userId: user?.id,
-      isLiked: isLike,
-      isDisliked: isDislike,
-    });
-  };
+  const onClickPost = () => {
+    console.log("click");
 
-  const onDislike = () => {
-    if (!user?.id) return;
-    dislike({
-      post: post,
-      userId: user?.id,
-      isLiked: isLike,
-      isDisliked: isDislike,
-    });
+    navigate({ to: "/post-info", search: { id: post.id } });
   };
 
   return (
-    <div className={styles.post}>
+    <div className={styles.post} onClick={onClickPost}>
       <div className={styles.buttonsContainer}>
         <AddFavourite post={post} userId={user?.id} isFavourite={isFavourite} />
         {user?.role === "admin" ? (
@@ -56,19 +38,8 @@ export const PostCard: React.FC<Props> = ({ post }) => {
       <div className={styles.title}>{post.title}</div>
       <span className={styles.body}>{post.body}</span>
       <div className={styles.info}>
-        <div
-          style={{ color: isLike ? "green" : "#fff" }}
-          className={styles.infoItem}
-        >
-          <ThumbsUp onClick={onLike} className={styles.icon} />: {post.likes}
-        </div>
-        <div
-          style={{ color: isDislike ? "red" : "#fff" }}
-          className={styles.infoItem}
-        >
-          <ThumbsDown onClick={onDislike} className={styles.icon} />:{" "}
-          {post.dislikes}
-        </div>
+        <AddLike post={post} />
+        <AddDislike post={post} />
         <div className={styles.userInfo}>
           <div className={styles.userName}>{post.userName}</div>
           <div className={styles.date}>
