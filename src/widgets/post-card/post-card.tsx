@@ -17,7 +17,6 @@ interface Props {
 export const PostCard: React.FC<Props> = ({ post }) => {
   const user = useUser();
   const navigate = useNavigate();
-  const isFavourite = user?.id ? post.favouriteIds.includes(user.id) : false;
 
   const onClickPost = () => {
     console.log("click");
@@ -28,7 +27,7 @@ export const PostCard: React.FC<Props> = ({ post }) => {
   return (
     <div className={styles.post} onClick={onClickPost}>
       <div className={styles.buttonsContainer}>
-        <AddFavourite post={post} userId={user?.id} isFavourite={isFavourite} />
+        {user && <AddFavourite post={post} />}
         {user?.role === "admin" ? (
           <DeletePostBtn postId={post.id} />
         ) : (

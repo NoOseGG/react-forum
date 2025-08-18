@@ -1,65 +1,90 @@
 .postInfoPage {
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
+  position: relative;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .title {
-    font-size: 50px;
-    font-weight: 800;
-    text-align: center;
+  font-size: 50px;
+  font-weight: 800;
+  text-align: center;
 }
 
 .postTitle {
-    margin-top: 20px;
-    font-size: 32px;
-    font-weight: 800;
+  margin-top: 20px;
+  font-size: 32px;
+  font-weight: 800;
 }
 
 .postText {
-    font-size: 16px;
-    margin-top: 10px;
+  font-size: 24px;
+  margin-top: 10px;
 }
 
 .postAuthor {
-    margin-top: 10px;
-    font-size: 16px;
-    font-style: italic;
+  margin-top: 10px;
+  font-size: 16px;
+  font-style: italic;
+}
+
+.postDate {
+  margin-top: 4px;
+  font-size: 16px;
+  font-style: italic;
 }
 
 .info {
-    margin-top: 10px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 20px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
 }
 
 .infoItem {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
 }
 
 .icon {
-    cursor: pointer;
-    transition: transfrom 0.3s ease;
+  cursor: pointer;
+  transition: transfrom 0.3s ease;
 
-    &:hover {
-        transform: scale(1.03);
-    }
+  &:hover {
+    transform: scale(1.03);
+  }
 }
 
 .commentTitle {
-    margin-top: 30px;
-    font-size: 20px;
-    font-weight: 800;
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 800;
 }
 
 .commentsContainer {
-    width: 100%;
-    margin-top: 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 10px;
+  width: 100%;
+  margin-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.editBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.addComment {
+  margin-top: 10px;
 }

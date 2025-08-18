@@ -1,3 +1,4 @@
+import { useNavigate } from "@tanstack/react-router";
 import { Trash2 } from "lucide-react";
 
 import React, { useState } from "react";
@@ -15,11 +16,14 @@ interface Props {
 export const DeletePostBtn: React.FC<Props> = ({ postId }) => {
   const { mutate } = useDeletePost();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const onDelete = () => {
     mutate(postId);
     setIsModalOpen(false);
+    navigate({ to: "/posts" });
   };
+
 
   return (
     <>

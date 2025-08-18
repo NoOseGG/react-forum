@@ -1,32 +1,29 @@
-import { HeartMinus, HeartPlus, HeartPlusIcon } from "lucide-react";
+import { HeartMinus, HeartPlusIcon } from "lucide-react";
 
 import React from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 
 import type { Post } from "../../../entities/post/model/types";
+import { useUser } from "../../../entities/user/model/store/user-store";
 import { useFavourite } from "../model/hooks/useFavourite";
 import styles from "./add-favourite.module.css";
 
 interface Props {
-  isFavourite: boolean;
   post: Post;
-  userId: string | undefined;
 }
 
-export const AddFavourite: React.FC<Props> = ({
-  isFavourite,
-  post,
-  userId,
-}) => {
+export const AddFavourite: React.FC<Props> = ({ post }) => {
   const { mutate } = useFavourite();
+  const user = useUser();
+  const isFavourite = user?.id ? post.favouriteIds.includes(user.id) : false;
 
-  const onFavourite = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onFavourite = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (!userId) return;
+    if (!user?.id) return;
     mutate({
       post: post,
-      userId: userId,
+      userId: user?.id,
       isFavourite: isFavourite,
     });
   };

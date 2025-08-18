@@ -4,6 +4,7 @@ import { Divide } from "lucide-react";
 import { useEffect } from "react";
 
 import { useGetPosts } from "../../entities/post/hooks/use-get-posts";
+import { useGetUserById } from "../../entities/user/model/hooks/use-get-user-by-id";
 import { useUser } from "../../entities/user/model/store/user-store";
 import { EditProfile } from "../../features/edit-profile";
 import { PostCard } from "../../widgets/post-card/post-card";
@@ -12,7 +13,7 @@ import styles from "./user-info-page.module.css";
 export const UserInfoPage = () => {
   const { id } = useSearch({ strict: false });
   const { data: posts } = useGetPosts();
-  const user = useUser();
+  const { data: user } = useGetUserById(id);
 
   const userPosts = posts?.filter(post => post.userId === id);
 

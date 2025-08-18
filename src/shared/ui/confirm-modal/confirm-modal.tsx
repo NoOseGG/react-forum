@@ -19,8 +19,12 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
 }) => {
   if (!isOpen) return null;
 
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // не даёт клику "пройти" на задний экран
+  };
+
   return (
-    <div className={styles.overlay}>
+    <div className={styles.overlay} onClick={handleOverlayClick}>
       <div className={styles.modal}>
         <h3>{title}</h3>
         <p>{message}</p>
